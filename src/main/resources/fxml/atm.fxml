@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.SVGPath?>
+
+<ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" styleClass="scroll-pane" stylesheets="@/css/styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.budgetfit.controllers.AtmController">
+    <content>
+        <HBox spacing="28" styleClass="atm-dashboard-root">
+            <!-- LEFT COLUMN: STATS & SUMMARY (Width: 340) -->
+            <VBox spacing="20" prefWidth="340">
+                <!-- 1. DEPOSITED BALANCE CARD -->
+                <VBox styleClass="card, card-padded" spacing="12">
+                    <Label text="DEPOSITED BALANCE" styleClass="card-title" />
+                    <Label fx:id="atmBalanceLabel" text="\$0.00" styleClass="bento-stat-value, mono" />
+                    <Label text="Total calculateable fiat value of all your ATM accounts in USD." styleClass="card-subtitle" wrapText="true" />
+                </VBox>
+
+                <!-- 2. AVAILABLE CASH BALANCE CARD -->
+                <VBox styleClass="card, card-padded" spacing="12">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="AVAILABLE CASH" styleClass="card-title" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button text="View Pending ➔" styleClass="btn-link" style="-fx-text-fill: #10b981;" />
+                    </HBox>
+                    <Label text="\$81,032" styleClass="bento-stat-value, mono" />
+                    <Label text="Ready for budgeting &amp; immediate withdrawal" styleClass="card-subtitle" />
+                </VBox>
+
+                <!-- 3. ACCOUNT SUMMARY CARD -->
+                <VBox styleClass="card, card-padded" spacing="16">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="ACCOUNT SUMMARY" styleClass="card-title" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label text="Main Checking ⌄" styleClass="bento-stat-sub, mono" style="-fx-font-size: 13px; -fx-text-fill: #0f172a;" />
+                    </HBox>
+                    <HBox spacing="16">
+                        <VBox styleClass="sub-card" HBox.hgrow="ALWAYS" spacing="6">
+                            <Label text="TOTAL INCOMING" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
+                            <HBox alignment="CENTER_LEFT" spacing="6">
+                                <SVGPath content="M20 12L12 20L4 12M12 4V20" style="-fx-stroke: #10b981; -fx-stroke-width: 2;" />
+                                <Label text="\$809.05" styleClass="bento-stat-sub, mono" style="-fx-text-fill: #10b981;" />
+                            </HBox>
+                        </VBox>
+                        <VBox styleClass="sub-card" HBox.hgrow="ALWAYS" spacing="6">
+                            <Label text="TOTAL OUTGOING" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
+                            <HBox alignment="CENTER_LEFT" spacing="6">
+                                <SVGPath content="M4 12L12 4L20 12M12 20V4" style="-fx-stroke: #ef4444; -fx-stroke-width: 2;" />
+                                <Label text="\$2,230.23" styleClass="bento-stat-sub, mono" style="-fx-text-fill: #ef4444;" />
+                            </HBox>
+                        </VBox>
+                    </HBox>
+                </VBox>
+
+                <!-- 4. ACTIVITY THIS WEEK CARD -->
+                <VBox styleClass="card, card-padded" spacing="16">
+                    <Label text="ACTIVITY THIS WEEK" styleClass="card-title" />
+                    <VBox spacing="16">
+                        <!-- INCOMING -->
+                        <HBox alignment="CENTER_LEFT" spacing="12">
+                            <SVGPath content="M5 15L10 10L15 15L20 5" styleClass="sparkline-green" />
+                            <VBox spacing="2">
+                                <Label text="INCOMING" styleClass="card-title" style="-fx-font-size: 11px;" />
+                                <Label text="140.59 TX" styleClass="card-subtitle" style="-fx-font-size: 10px;" />
+                            </VBox>
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Label text="\$8,434.59" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                        </HBox>
+                        <!-- OUTGOING -->
+                        <HBox alignment="CENTER_LEFT" spacing="12">
+                            <SVGPath content="M5 5L10 12L15 8L20 16" styleClass="sparkline-red" />
+                            <VBox spacing="2">
+                                <Label text="OUTGOING" styleClass="card-title" style="-fx-font-size: 11px;" />
+                                <Label text="10.75 TX" styleClass="card-subtitle" style="-fx-font-size: 10px;" />
+                            </VBox>
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Label text="\$1,232.02" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                        </HBox>
+                        <!-- WITHDRAWN -->
+                        <HBox alignment="CENTER_LEFT" spacing="12">
+                            <SVGPath content="M5 12L10 12L15 8L20 14" styleClass="sparkline-white" style="-fx-stroke: #64748b;" />
+                            <VBox spacing="2">
+                                <Label text="WITHDRAWN" styleClass="card-title" style="-fx-font-size: 11px;" />
+                                <Label text="5.02 TX" styleClass="card-subtitle" style="-fx-font-size: 10px;" />
+                            </VBox>
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Label text="\$504.00" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </VBox>
+
+            <!-- MIDDLE COLUMN: ASSETS & RECENT TRANSACTIONS (Flexible Width) -->
+            <VBox spacing="20" HBox.hgrow="ALWAYS">
+                <!-- 1. BANKING ASSETS & ACCOUNTS CARD -->
+                <VBox styleClass="card, card-padded" spacing="20">
+                    <HBox spacing="24" alignment="CENTER_LEFT" style="-fx-border-color: #e2e8f0; -fx-border-width: 0 0 1 0; -fx-padding: 0 0 12 0;">
+                        <Label text="Active Accounts ⟳" styleClass="tab-lbl-active" />
+                        <Label text="External Accounts ⟳" styleClass="tab-lbl" />
+                    </HBox>
+                    <TextField promptText="🔍 Search account..." styleClass="search-field-white" />
+                    
+                    <HBox spacing="16" alignment="CENTER_LEFT" style="-fx-padding: 0 16;">
+                        <Label text="ACCOUNT" styleClass="card-subtitle" prefWidth="180" />
+                        <Label text="BALANCE" styleClass="card-subtitle" prefWidth="140" />
+                        <Label text="MONTHLY AVG" styleClass="card-subtitle" HBox.hgrow="ALWAYS" />
+                    </HBox>
+
+                    <VBox spacing="12">
+                        <!-- Account 1 -->
+                        <HBox styleClass="sub-card" alignment="CENTER_LEFT" spacing="16">
+                            <StackPane styleClass="asset-icon-box" style="-fx-background-color: #3b82f6;"><Label text="🏦" styleClass="asset-icon" /></StackPane>
+                            <VBox spacing="2" prefWidth="144">
+                                <Label text="Main Checking" styleClass="card-title" />
+                                <Label text="Active • Primary" styleClass="card-subtitle" />
+                            </VBox>
+                            <VBox spacing="2" prefWidth="140">
+                                <Label text="\$85,434.59" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                                <Label text="24,320.02 TX" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
+                            </VBox>
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="\$5,434.59" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                                <Label text="Stable flow" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
+                            </VBox>
+                        </HBox>
+
+                        <!-- Account 2 -->
+                        <HBox styleClass="sub-card" alignment="CENTER_LEFT" spacing="16">
+                            <StackPane styleClass="asset-icon-box" style="-fx-background-color: #10b981;"><Label text="💳" styleClass="asset-icon" /></StackPane>
+                            <VBox spacing="2" prefWidth="144">
+                                <Label text="Premium Savings" styleClass="card-title" />
+                                <Label text="High Yield • 4.5%" styleClass="card-subtitle" />
+                            </VBox>
+                            <VBox spacing="2" prefWidth="140">
+                                <Label text="\$10,320.72" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #10b981;" />
+                                <Label text="10,320.72 TX" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
+                            </VBox>
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="\$2,013.20" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                                <Label text="Interest earning" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
+                            </VBox>
+                        </HBox>
+
+                        <!-- Account 3 -->
+                        <HBox styleClass="sub-card" alignment="CENTER_LEFT" spacing="16">
+                            <StackPane styleClass="asset-icon-box" style="-fx-background-color: #8b5cf6;"><Label text="📈" styleClass="asset-icon" /></StackPane>
+                            <VBox spacing="2" prefWidth="144">
+                                <Label text="Investment Cash" styleClass="card-title" />
+                                <Label text="Brokerage • Liquid" styleClass="card-subtitle" />
+                            </VBox>
+                            <VBox spacing="2" prefWidth="140">
+                                <Label text="\$10,433.20" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                                <Label text="2,013.20 TX" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
+                            </VBox>
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="\$1,013.20" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                                <Label text="Ready to invest" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                </VBox>
+
+                <!-- 2. RECENT TRANSACTIONS CARD -->
+                <VBox styleClass="card, card-padded" spacing="20">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="RECENT TRANSACTIONS" styleClass="card-title" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button text="View All ➔" styleClass="btn-outline" style="-fx-padding: 4 12;" />
+                    </HBox>
+
+                    <VBox spacing="12">
+                        <!-- Transaction 1 -->
+                        <HBox styleClass="sub-card" alignment="CENTER_LEFT" spacing="16">
+                            <StackPane styleClass="circle-badge-box">
+                                <Circle radius="16" fill="#e2e8f0" stroke="#10b981" strokeWidth="2.5" />
+                                <Label text="66%" styleClass="circle-badge-text" style="-fx-text-fill: #10b981;" />
+                            </StackPane>
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="Jane's Salary" styleClass="card-title" />
+                                <Label text="will deposit 50% next week" styleClass="card-subtitle" />
+                            </VBox>
+                            <VBox alignment="CENTER_RIGHT" spacing="2">
+                                <Label text="+ \$48,556.98" styleClass="bento-stat-sub, mono" style="-fx-font-size: 15px; -fx-text-fill: #10b981;" />
+                                <Label text="Verified Payroll" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
+                            </VBox>
+                        </HBox>
+
+                        <!-- Transaction 2 -->
+                        <HBox styleClass="sub-card" alignment="CENTER_LEFT" spacing="16">
+                            <StackPane styleClass="circle-badge-box">
+                                <Circle radius="16" fill="#e2e8f0" stroke="#3b82f6" strokeWidth="2.5" />
+                                <Label text="✔" styleClass="circle-badge-text" style="-fx-text-fill: #3b82f6; -fx-font-size: 14px;" />
+                            </StackPane>
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="DAO Work / Client Payment" styleClass="card-title" />
+                                <Label text="Awesome Work, WAGMI." styleClass="card-subtitle" />
+                            </VBox>
+                            <VBox alignment="CENTER_RIGHT" spacing="2">
+                                <Label text="+ \$10,000.00" styleClass="bento-stat-sub, mono" style="-fx-font-size: 15px; -fx-text-fill: #0f172a;" />
+                                <Label text="Direct Settlement" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
+                            </VBox>
+                        </HBox>
+
+                        <!-- Transaction 3 -->
+                        <HBox styleClass="sub-card" alignment="CENTER_LEFT" spacing="16">
+                            <StackPane styleClass="circle-badge-box">
+                                <Circle radius="16" fill="#e2e8f0" stroke="#ef4444" strokeWidth="2.5" />
+                                <Label text="48%" styleClass="circle-badge-text" style="-fx-text-fill: #ef4444;" />
+                            </StackPane>
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="Jane's Deposit" styleClass="card-title" />
+                                <Label text="will deposit 50% next week" styleClass="card-subtitle" />
+                            </VBox>
+                            <VBox alignment="CENTER_RIGHT" spacing="2">
+                                <Label text="- \$49,804.55" styleClass="bento-stat-sub, mono" style="-fx-font-size: 15px; -fx-text-fill: #ef4444;" />
+                                <Label text="External Transfer" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </VBox>
+
+            <!-- RIGHT COLUMN: DEPOSIT, WITHDRAW, P2P ACTIONS (Width: 380) -->
+            <VBox spacing="20" prefWidth="380">
+                <!-- 1. DEPOSIT CASH CARD -->
+                <VBox styleClass="card, card-padded" spacing="16" style="-fx-border-color: #059669;">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="↙ DEPOSIT CASH" styleClass="card-title" style="-fx-text-fill: #10b981; -fx-font-size: 14px;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label text="Instant Settlement" styleClass="card-subtitle" style="-fx-text-fill: #10b981;" />
+                    </HBox>
+                    <Label text="Deposit external funds directly into your ATM balance." styleClass="card-subtitle" />
+                    
+                    <VBox spacing="12">
+                        <VBox spacing="4">
+                            <Label text="Amount (\$)" styleClass="card-title" style="-fx-font-size: 11px;" />
+                            <TextField fx:id="depAmountField" promptText="e.g. 500.00" styleClass="search-field-white" />
+                        </VBox>
+                        <VBox spacing="4">
+                            <Label text="Source Description" styleClass="card-title" style="-fx-font-size: 11px;" />
+                            <TextField fx:id="depSourceField" promptText="e.g. BudgetFit Bank (Cash Deposit)" styleClass="search-field-white" />
+                        </VBox>
+                        <Button text="AUTHORIZE DEPOSIT" onAction="#handleDeposit" styleClass="btn-success" maxWidth="Infinity" />
+                    </VBox>
+                </VBox>
+
+                <!-- 2. WITHDRAW CASH CARD -->
+                <VBox styleClass="card, card-padded" spacing="16" style="-fx-border-color: #ef4444;">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="↗ WITHDRAW CASH" styleClass="card-title" style="-fx-text-fill: #ef4444; -fx-font-size: 14px;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label text="Secured PIN" styleClass="card-subtitle" style="-fx-text-fill: #ef4444;" />
+                    </HBox>
+                    <Label text="Withdraw your deposited balance into your bank account." styleClass="card-subtitle" />
+                    
+                    <VBox spacing="12">
+                        <VBox spacing="4">
+                            <Label text="Amount (\$)" styleClass="card-title" style="-fx-font-size: 11px;" />
+                            <TextField fx:id="withAmountField" promptText="e.g. 100.00" styleClass="search-field-white" />
+                        </VBox>
+                        <VBox spacing="4">
+                            <Label text="Destination / Reason" styleClass="card-title" style="-fx-font-size: 11px;" />
+                            <TextField fx:id="withDestField" promptText="e.g. ATM Cash Withdrawal" styleClass="search-field-white" />
+                        </VBox>
+                        <Button text="AUTHORIZE WITHDRAWAL" onAction="#handleWithdrawal" styleClass="btn-danger" maxWidth="Infinity" />
+                    </VBox>
+                </VBox>
+
+                <!-- 3. P2P TRANSFER CARD -->
+                <VBox styleClass="card, card-padded" spacing="16" style="-fx-border-color: #3b82f6;">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="⇄ P2P TRANSFER" styleClass="card-title" style="-fx-text-fill: #3b82f6; -fx-font-size: 14px;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label text="Zero Fees" styleClass="card-subtitle" style="-fx-text-fill: #3b82f6;" />
+                    </HBox>
+                    <Label text="Send funds instantly to any BudgetFit user." styleClass="card-subtitle" />
+                    
+                    <VBox spacing="12">
+                        <VBox spacing="4">
+                            <Label text="Recipient Username" styleClass="card-title" style="-fx-font-size: 11px;" />
+                            <TextField fx:id="transRecipientField" promptText="e.g. sarah" styleClass="search-field-white" />
+                        </VBox>
+                        <VBox spacing="4">
+                            <Label text="Transfer Amount (\$)" styleClass="card-title" style="-fx-font-size: 11px;" />
+                            <TextField fx:id="transAmountField" promptText="e.g. 250.00" styleClass="search-field-white" />
+                        </VBox>
+                        <Button text="AUTHORIZE P2P TRANSFER" onAction="#handleTransfer" styleClass="btn-info" maxWidth="Infinity" />
+                    </VBox>
+                </VBox>
+            </VBox>
+        </HBox>
+    </content>
+</ScrollPane>

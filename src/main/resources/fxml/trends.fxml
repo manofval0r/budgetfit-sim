@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.GridPane?>
+
+<BorderPane prefHeight="750.0" prefWidth="1000.0" stylesheets="@/css/styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.budgetfit.controllers.TrendController">
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="20" styleClass="nav-header" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Financial Analysis" style="-fx-font-size: 24px; -fx-font-weight: 800; -fx-text-fill: #3e6560;" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#handleBack" styleClass="btn-logout" text="Back to Dashboard" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; -fx-background: transparent;">
+         <content>
+            <VBox spacing="24" style="-fx-padding: 32;">
+               <!-- Summary Tiles -->
+               <HBox spacing="20">
+                  <VBox styleClass="bento-stat-card" HBox.hgrow="ALWAYS">
+                     <Label text="Average Savings" styleClass="bento-stat-label" />
+                     <Label fx:id="avgSavingsLabel" text="\$0.00" styleClass="bento-stat-value" />
+                  </VBox>
+                  <VBox styleClass="bento-stat-card" HBox.hgrow="ALWAYS">
+                     <Label text="Top Expense" styleClass="bento-stat-label" />
+                     <Label fx:id="topExpenseLabel" text="Rent" styleClass="bento-stat-value" />
+                  </VBox>
+                  <VBox styleClass="bento-stat-card" HBox.hgrow="ALWAYS">
+                     <Label text="Net Worth Delta" styleClass="bento-stat-label" />
+                     <Label fx:id="netWorthDeltaLabel" text="+ \$0.00" styleClass="bento-stat-value" />
+                  </VBox>
+               </HBox>
+
+               <!-- Main Charts -->
+               <GridPane hgap="24" vgap="24">
+                  <VBox styleClass="card" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS">
+                     <VBox styleClass="header-panel">
+                        <Label text="INCOME VS EXPENSES" styleClass="header-title" />
+                     </VBox>
+                     <BarChart fx:id="trendChart" prefHeight="350">
+                        <xAxis><CategoryAxis side="BOTTOM" /></xAxis>
+                        <yAxis><NumberAxis side="LEFT" /></yAxis>
+                     </BarChart>
+                  </VBox>
+
+                  <VBox styleClass="card" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS">
+                     <VBox styleClass="header-panel">
+                        <Label text="NET BALANCE TREND" styleClass="header-title" />
+                     </VBox>
+                     <LineChart fx:id="balanceLineChart" prefHeight="350">
+                        <xAxis><CategoryAxis side="BOTTOM" /></xAxis>
+                        <yAxis><NumberAxis side="LEFT" /></yAxis>
+                     </LineChart>
+                  </VBox>
+
+                  <VBox styleClass="card" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
+                     <VBox styleClass="header-panel">
+                        <Label text="EXPENSE BREAKDOWN BY CATEGORY" styleClass="header-title" />
+                     </VBox>
+                     <HBox alignment="CENTER" spacing="50" style="-fx-padding: 20;">
+                        <PieChart fx:id="categoryPieChart" prefHeight="400" prefWidth="500" />
+                        <VBox fx:id="categoryLegend" alignment="CENTER_LEFT" spacing="10" />
+                     </HBox>
+                  </VBox>
+                  
+                  <columnConstraints>
+                     <javafx.scene.layout.ColumnConstraints hgrow="ALWAYS" percentWidth="50" />
+                     <javafx.scene.layout.ColumnConstraints hgrow="ALWAYS" percentWidth="50" />
+                  </columnConstraints>
+               </GridPane>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

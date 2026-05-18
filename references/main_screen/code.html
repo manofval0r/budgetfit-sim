@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BudgetFlow - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1b1c1c",
+                        "surface-tint": "#3e6560",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#6b5b50",
+                        "inverse-on-surface": "#f3f0f0",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#f0eded",
+                        "outline-variant": "#c0c8c6",
+                        "on-secondary-container": "#7a5243",
+                        "on-background": "#1b1c1c",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e4e2e1",
+                        "outline": "#717977",
+                        "on-error": "#ffffff",
+                        "primary-container": "#78a19b",
+                        "on-primary-container": "#0b3733",
+                        "tertiary-fixed-dim": "#d7c3b5",
+                        "surface": "#fbf9f8",
+                        "inverse-primary": "#a5cfc8",
+                        "background": "#fbf9f8",
+                        "on-secondary-fixed-variant": "#623e30",
+                        "surface-container-high": "#eae8e7",
+                        "secondary": "#7d5546",
+                        "secondary-container": "#fec8b6",
+                        "surface-container-low": "#f5f3f2",
+                        "inverse-surface": "#303030",
+                        "secondary-fixed": "#ffdbcf",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#a89689",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e4e2e1",
+                        "primary-fixed-dim": "#a5cfc8",
+                        "on-tertiary-fixed-variant": "#52443a",
+                        "on-tertiary-container": "#3b2f25",
+                        "on-primary-fixed-variant": "#254d49",
+                        "secondary-fixed-dim": "#efbba9",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#c0ebe4",
+                        "on-secondary-fixed": "#301409",
+                        "tertiary-fixed": "#f4dfd0",
+                        "on-surface-variant": "#414847",
+                        "primary": "#3e6560",
+                        "surface-bright": "#fbf9f8",
+                        "on-primary-fixed": "#00201d",
+                        "on-tertiary-fixed": "#241911"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "64px",
+                        "gutter": "20px",
+                        "xs": "4px",
+                        "base": "8px",
+                        "lg": "40px",
+                        "container-padding": "32px",
+                        "md": "24px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Manrope"],
+                        "data-mono": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-xs": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "data-mono": ["14px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["18px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-xs": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.08em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .table-row-divider {
+                @apply border-b border-outline-variant;
+            }
+            .card-header {
+                @apply bg-tertiary-fixed font-label-xs text-label-xs uppercase tracking-widest text-on-surface p-sm text-center border-b border-outline-variant;
+            }
+            .table-cell-padding {
+                @apply py-base px-sm;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-lg min-h-screen flex antialiased">
+<!-- TopAppBar (Mobile) -->
+<header class="md:hidden bg-surface flex justify-between items-center h-16 px-gutter w-full fixed top-0 z-50 border-b border-outline-variant">
+<div class="font-display-lg text-display-lg text-primary">BudgetFlow</div>
+<div class="flex gap-sm text-primary">
+<span class="material-symbols-outlined">notifications</span>
+<span class="material-symbols-outlined">settings</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 p-gutter md:p-container-padding mt-16 md:mt-0 pb-24 md:pb-24 overflow-y-auto">
+<div class="max-w-[1400px] mx-auto space-y-md">
+<!-- Top Section: Header & Charts -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-sm">
+<!-- Month Selection Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT flex flex-col">
+<div class="bg-tertiary-fixed flex-1 flex items-center justify-center rounded-t-DEFAULT">
+<h1 class="font-display-lg text-display-lg text-on-surface">April</h1>
+</div>
+<div class="p-sm grid grid-cols-[auto_1fr] gap-x-sm gap-y-xs text-data-mono">
+<span class="text-on-surface-variant uppercase text-[10px] font-bold tracking-wider self-center">Start Date</span>
+<span class="text-right border-b border-outline-variant pb-xs">1 Apr 2024</span>
+<span class="text-on-surface-variant uppercase text-[10px] font-bold tracking-wider self-center">End Date</span>
+<span class="text-right border-b border-outline-variant pb-xs">30 Apr 2024</span>
+<span class="col-span-2 text-center text-xs mt-xs text-on-surface-variant">$</span>
+</div>
+</div>
+<!-- Amount Left to Spend Donut -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT flex flex-col">
+<div class="card-header rounded-t-DEFAULT">Amount Left to Spend</div>
+<div class="flex-1 flex items-center justify-center p-md relative">
+<!-- Simulated Donut Chart using SVG -->
+<svg class="w-32 h-32 transform -rotate-90" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="40" stroke="#E4E2E1" stroke-width="15"></circle>
+<circle class="transition-all duration-1000 ease-out" cx="50" cy="50" fill="none" r="40" stroke="#3E6560" stroke-dasharray="251.2" stroke-dashoffset="60" stroke-width="15"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="font-data-mono text-on-surface font-bold">$2400.45</span>
+</div>
+</div>
+</div>
+<!-- Cash Flow Bar Chart Summary -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT flex flex-col">
+<div class="card-header rounded-t-DEFAULT">Cash Flow Summary</div>
+<div class="flex-1 p-sm flex flex-col justify-center text-data-mono">
+<div class="flex justify-center gap-md mb-sm text-[10px] uppercase">
+<span class="flex items-center gap-xs"><span class="w-3 h-3 bg-primary-fixed inline-block"></span> Budget</span>
+<span class="flex items-center gap-xs"><span class="w-3 h-3 bg-primary inline-block"></span> Actual</span>
+</div>
+<div class="space-y-xs">
+<div class="flex items-center gap-sm">
+<span class="w-16 text-right text-xs">Bills</span>
+<div class="flex-1 bg-surface-variant h-4 relative">
+<div class="absolute left-0 top-0 h-2 bg-primary-fixed w-[90%]"></div>
+<div class="absolute left-0 bottom-0 h-2 bg-primary w-[85%]"></div>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="w-16 text-right text-xs">Expenses</span>
+<div class="flex-1 bg-surface-variant h-4 relative">
+<div class="absolute left-0 top-0 h-2 bg-primary-fixed w-[70%]"></div>
+<div class="absolute left-0 bottom-0 h-2 bg-primary w-[30%]"></div>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="w-16 text-right text-xs">Savings</span>
+<div class="flex-1 bg-surface-variant h-4 relative">
+<div class="absolute left-0 top-0 h-2 bg-primary-fixed w-[40%]"></div>
+<div class="absolute left-0 bottom-0 h-2 bg-primary w-[15%]"></div>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="w-16 text-right text-xs">Debt</span>
+<div class="flex-1 bg-surface-variant h-4 relative">
+<div class="absolute left-0 top-0 h-2 bg-primary-fixed w-[30%]"></div>
+<div class="absolute left-0 bottom-0 h-2 bg-primary w-[25%]"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-between mt-xs text-[10px] text-on-surface-variant pl-20">
+<span>0.00</span>
+<span>1,000.00</span>
+<span>2,000.00</span>
+</div>
+</div>
+</div>
+<!-- Allocation Summary Donut -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT flex flex-col">
+<div class="card-header rounded-t-DEFAULT">Allocation Summary</div>
+<div class="flex-1 flex items-center justify-center p-md relative">
+<!-- Simulated Donut Chart using SVG -->
+<svg class="w-32 h-32 transform -rotate-90" viewbox="0 0 100 100">
+<!-- Bills -->
+<circle cx="50" cy="50" fill="none" r="30" stroke="#A5CFC8" stroke-dasharray="188.4" stroke-dashoffset="0" stroke-width="20"></circle>
+<!-- Expenses -->
+<circle cx="50" cy="50" fill="none" r="30" stroke="#3E6560" stroke-dasharray="188.4" stroke-dashoffset="140" stroke-width="20"></circle>
+<!-- Savings -->
+<circle cx="50" cy="50" fill="none" r="30" stroke="#FEC8B6" stroke-dasharray="188.4" stroke-dashoffset="165" stroke-width="20"></circle>
+<!-- Debt -->
+<circle cx="50" cy="50" fill="none" r="30" stroke="#E5E0DA" stroke-dasharray="188.4" stroke-dashoffset="175" stroke-width="20"></circle>
+</svg>
+</div>
+</div>
+</section>
+<!-- Bottom Section: Detailed Tables Grid -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-sm">
+<!-- Column 1: Summaries -->
+<div class="space-y-sm">
+<!-- Cash Flow Summary Table -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT">
+<div class="card-header rounded-t-DEFAULT">Cash Flow Summary</div>
+<div class="p-xs">
+<table class="w-full text-data-mono text-[11px]">
+<thead>
+<tr class="text-on-surface-variant text-[9px] uppercase tracking-wider border-b border-outline-variant">
+<th class="text-left font-normal py-xs">Category</th>
+<th class="text-right font-normal py-xs">Budget</th>
+<th class="text-right font-normal py-xs">Actual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="table-row-divider">
+<td class="py-1">+ Rollover</td>
+<td class="text-right">$ 0.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1">+ Income</td>
+<td class="text-right">$ 7,650.45</td>
+<td class="text-right">$ 5,500.45</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1">- Bills</td>
+<td class="text-right">$ 2,572.98</td>
+<td class="text-right">$ 2,250.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1">- Expenses</td>
+<td class="text-right">$ 2,150.00</td>
+<td class="text-right">$ 350.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1">- Savings</td>
+<td class="text-right">$ 600.00</td>
+<td class="text-right">$ 300.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1">- Debt</td>
+<td class="text-right">$ 500.00</td>
+<td class="text-right">$ 200.00</td>
+</tr>
+<tr class="bg-tertiary-fixed font-bold">
+<td class="py-1 px-1">LEFT</td>
+<td class="text-right">$ 1,827.47</td>
+<td class="text-right px-1">$ 2,400.45</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Income Summary Table -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT">
+<div class="card-header rounded-t-DEFAULT">Income Summary</div>
+<div class="p-xs">
+<table class="w-full text-data-mono text-[11px]">
+<thead>
+<tr class="text-on-surface-variant text-[9px] uppercase tracking-wider border-b border-outline-variant">
+<th class="text-left font-normal py-xs">Category</th>
+<th class="text-right font-normal py-xs">Budget</th>
+<th class="text-right font-normal py-xs">Actual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="table-row-divider">
+<td class="py-1">Paycheck</td>
+<td class="text-right">$ 5,500.45</td>
+<td class="text-right">$ 5,500.45</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1">Business</td>
+<td class="text-right">$ 1,000.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1">Side Hustle</td>
+<td class="text-right">$ 1,000.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1">Interest Income</td>
+<td class="text-right">$ 100.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider border-none">
+<td class="py-1">Dividends</td>
+<td class="text-right">$ 50.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Column 2: Bill Tracker -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT h-full">
+<div class="card-header rounded-t-DEFAULT">Bill Tracker</div>
+<div class="p-xs">
+<table class="w-full text-data-mono text-[11px]">
+<thead>
+<tr class="text-on-surface-variant text-[9px] uppercase tracking-wider border-b border-outline-variant">
+<th class="text-left font-normal py-xs">Category</th>
+<th class="text-right font-normal py-xs">Budget</th>
+<th class="text-right font-normal py-xs">Actual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="table-row-divider">
+<td class="py-1 flex items-center gap-1"><input class="w-3 h-3 text-primary border-outline-variant rounded-sm focus:ring-primary" type="checkbox"/> Internet</td>
+<td class="text-right">$ 50.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1 flex items-center gap-1"><input class="w-3 h-3 text-primary border-outline-variant rounded-sm focus:ring-primary" type="checkbox"/> Water</td>
+<td class="text-right">$ 100.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider bg-surface-container">
+<td class="py-1 flex items-center gap-1"><input checked="" class="w-3 h-3 text-primary border-outline-variant rounded-sm focus:ring-primary" type="checkbox"/> Electricity</td>
+<td class="text-right">$ 150.00</td>
+<td class="text-right">$ 150.00</td>
+</tr>
+<tr class="table-row-divider bg-surface-container">
+<td class="py-1 flex items-center gap-1"><input checked="" class="w-3 h-3 text-primary border-outline-variant rounded-sm focus:ring-primary" type="checkbox"/> Mobile</td>
+<td class="text-right">$ 100.00</td>
+<td class="text-right">$ 100.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1 flex items-center gap-1"><input class="w-3 h-3 text-primary border-outline-variant rounded-sm focus:ring-primary" type="checkbox"/> Gym</td>
+<td class="text-right">$ 50.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1 flex items-center gap-1"><input class="w-3 h-3 text-primary border-outline-variant rounded-sm focus:ring-primary" type="checkbox"/> Health Insurance</td>
+<td class="text-right">$ 50.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider bg-surface-container">
+<td class="py-1 flex items-center gap-1"><input checked="" class="w-3 h-3 text-primary border-outline-variant rounded-sm focus:ring-primary" type="checkbox"/> Rent</td>
+<td class="text-right">$ 2,000.00</td>
+<td class="text-right">$ 2,000.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1 flex items-center gap-1"><input class="w-3 h-3 text-primary border-outline-variant rounded-sm focus:ring-primary" type="checkbox"/> Gas</td>
+<td class="text-right">$ 50.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider border-none">
+<td class="py-1 flex items-center gap-1"><input class="w-3 h-3 text-primary border-outline-variant rounded-sm focus:ring-primary" type="checkbox"/> Spotify</td>
+<td class="text-right">$ 12.99</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Column 3: Expense Tracker -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT h-full">
+<div class="card-header rounded-t-DEFAULT">Expense Tracker</div>
+<div class="p-xs">
+<table class="w-full text-data-mono text-[11px]">
+<thead>
+<tr class="text-on-surface-variant text-[9px] uppercase tracking-wider border-b border-outline-variant">
+<th class="text-left font-normal py-xs">Category</th>
+<th class="text-right font-normal py-xs">Budget</th>
+<th class="text-right font-normal py-xs">Actual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="table-row-divider">
+<td class="py-1">Food</td>
+<td class="text-right">$ 1,000.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1">Dining Out</td>
+<td class="text-right">$ 300.00</td>
+<td class="text-right">$ 100.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1">Transportation</td>
+<td class="text-right">$ 150.00</td>
+<td class="text-right">$ 150.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1">Household</td>
+<td class="text-right">$ 100.00</td>
+<td class="text-right">$ 50.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1">Education</td>
+<td class="text-right">$ 150.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1">Health</td>
+<td class="text-right">$ 100.00</td>
+<td class="text-right">$ 50.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1">Beauty</td>
+<td class="text-right">$ 50.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1">Gifts</td>
+<td class="text-right">$ 150.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider border-none">
+<td class="py-1">Self-development</td>
+<td class="text-right">$ 100.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Column 4: Savings & Debt -->
+<div class="space-y-sm h-full flex flex-col">
+<!-- Savings Tracker -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT flex-1">
+<div class="card-header rounded-t-DEFAULT">Savings Tracker</div>
+<div class="p-xs">
+<table class="w-full text-data-mono text-[11px]">
+<thead>
+<tr class="text-on-surface-variant text-[9px] uppercase tracking-wider border-b border-outline-variant">
+<th class="text-left font-normal py-xs">Category</th>
+<th class="text-right font-normal py-xs">Budget</th>
+<th class="text-right font-normal py-xs">Actual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="table-row-divider">
+<td class="py-1 flex items-center gap-1"><input class="w-3 h-3 text-primary border-outline-variant rounded-sm focus:ring-primary" type="checkbox"/> Car</td>
+<td class="text-right">$ 250.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1 flex items-center gap-1"><input class="w-3 h-3 text-primary border-outline-variant rounded-sm focus:ring-primary" type="checkbox"/> Travel</td>
+<td class="text-right">$ 100.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1 flex items-center gap-1"><input class="w-3 h-3 text-primary border-outline-variant rounded-sm focus:ring-primary" type="checkbox"/> Renovation</td>
+<td class="text-right">$ 100.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider">
+<td class="py-1 flex items-center gap-1"><input checked="" class="w-3 h-3 text-primary border-outline-variant rounded-sm focus:ring-primary" type="checkbox"/> Emergency Fund</td>
+<td class="text-right">$ 150.00</td>
+<td class="text-right">$ 300.00</td>
+</tr>
+<tr class="bg-tertiary-fixed font-bold border-t border-outline-variant mt-2">
+<td class="py-1 px-1">TOTAL</td>
+<td class="text-right">$ 600.00</td>
+<td class="text-right px-1">$ 300.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Debt Tracker -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT">
+<div class="card-header rounded-t-DEFAULT">Debt Tracker</div>
+<div class="p-xs">
+<table class="w-full text-data-mono text-[11px]">
+<thead>
+<tr class="text-on-surface-variant text-[9px] uppercase tracking-wider border-b border-outline-variant">
+<th class="text-left font-normal py-xs">Category</th>
+<th class="text-right font-normal py-xs">Budget</th>
+<th class="text-right font-normal py-xs">Actual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="table-row-divider">
+<td class="py-1 flex items-center gap-1"><input class="w-3 h-3 text-primary border-outline-variant rounded-sm focus:ring-primary" type="checkbox"/> Student Loan</td>
+<td class="text-right">$ 200.00</td>
+<td class="text-right">$ 0.00</td>
+</tr>
+<tr class="table-row-divider border-none">
+<td class="py-1 flex items-center gap-1"><input class="w-3 h-3 text-primary border-outline-variant rounded-sm focus:ring-primary" type="checkbox"/> Credit Card</td>
+<td class="text-right">$ 300.00</td>
+<td class="text-right">$ 200.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Bottom Navigation -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 sm:gap-2 p-2 bg-surface shadow-md border border-outline-variant rounded-full">
+<a class="flex items-center gap-sm px-4 py-2 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="hidden md:inline font-label-xs text-label-xs uppercase tracking-widest font-bold">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm px-4 py-2 text-on-surface-variant hover:bg-surface-variant rounded-full transition-all" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="hidden md:inline font-label-xs text-label-xs uppercase tracking-widest">Transactions</span>
+</a>
+<a class="flex items-center gap-sm px-4 py-2 text-on-surface-variant hover:bg-surface-variant rounded-full transition-all" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="hidden md:inline font-label-xs text-label-xs uppercase tracking-widest">Budgets</span>
+</a>
+<a class="flex items-center gap-sm px-4 py-2 text-on-surface-variant hover:bg-surface-variant rounded-full transition-all" href="#">
+<span class="material-symbols-outlined">savings</span>
+<span class="hidden md:inline font-label-xs text-label-xs uppercase tracking-widest">Savings</span>
+</a>
+<a class="flex items-center gap-sm px-4 py-2 text-on-surface-variant hover:bg-surface-variant rounded-full transition-all" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="hidden md:inline font-label-xs text-label-xs uppercase tracking-widest">Reports</span>
+</a>
+</nav>
+</body></html>

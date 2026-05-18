@@ -1,0 +1,123 @@
+/* ZEBEC V2 DARK LUXURY MASTER CONFIGURATION (SITE-WIDE DARK MODE) */
+
+.root, .scroll-pane, .sub-scroll-pane, #contentArea, .atm-dashboard-root {
+    -fx-background-color: #0b0f19;
+}
+
+#sidebar, .nav-header, .controls-bar {
+    -fx-background-color: #111827;
+    -fx-border-color: #1f2937;
+}
+
+.card, .bento-stat-card, .sub-card, .glass-card, .header-panel {
+    -fx-background-color: #111827;
+    -fx-border-color: #1f2937;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0, 0, 5);
+}
+
+.card-title, .section-title, .view-header-title, .header-title, .amount-text, .bento-stat-value, .stat-num, .welcome-label, .detail-val, .detail-lbl-bold, .circle-badge-text {
+    -fx-text-fill: white;
+}
+
+.card-subtitle, .bento-stat-label, .bento-stat-sub, .nav-label, .detail-lbl, .label {
+    -fx-text-fill: #9ca3af;
+}
+
+.text-field, .search-field, .search-field-white, .combo-box, .combo-box-flat-wide {
+    -fx-background-color: #1f2937;
+    -fx-text-fill: white;
+    -fx-border-color: #374151;
+    -fx-prompt-text-fill: #6b7280;
+}
+
+.text-field:focused, .search-field:focused, .search-field-white:focused, .combo-box:focused, .combo-box-flat-wide:focused {
+    -fx-border-color: #10b981;
+}
+
+.table-view, .table-view .column-header-background {
+    -fx-background-color: #111827;
+    -fx-border-color: #1f2937;
+}
+
+.table-view .column-header {
+    -fx-background-color: #1f2937;
+    -fx-border-color: #374151;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #9ca3af;
+}
+
+.table-row-cell {
+    -fx-background-color: #111827;
+    -fx-border-color: #1f2937;
+    -fx-table-cell-border-color: #1f2937;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #1f2937;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #10b981;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: #0b0f19;
+}
+
+.tab-lbl {
+    -fx-text-fill: #6b7280;
+}
+
+.tab-lbl:hover {
+    -fx-text-fill: white;
+}
+
+.tab-lbl-active {
+    -fx-text-fill: #10b981;
+    -fx-border-color: #10b981;
+}
+
+.btn-filter-pill {
+    -fx-border-color: #374151;
+    -fx-text-fill: #9ca3af;
+}
+
+.btn-filter-pill:hover {
+    -fx-background-color: #1f2937;
+    -fx-text-fill: white;
+}
+
+.btn-filter-pill-action {
+    -fx-background-color: #1f2937;
+    -fx-border-color: #374151;
+    -fx-text-fill: #10b981;
+}
+
+.btn-filter-pill-action:hover {
+    -fx-background-color: #374151;
+}
+
+.btn-outline {
+    -fx-border-color: #374151;
+    -fx-text-fill: white;
+}
+
+.btn-outline:hover {
+    -fx-background-color: #1f2937;
+    -fx-border-color: #6b7280;
+}
+
+.audit-banner {
+    -fx-background-color: #1f2937;
+    -fx-border-color: #374151;
+}
+
+.audit-text {
+    -fx-text-fill: #9ca3af;
+}
+
+.chart-pie-label {
+    -fx-fill: #9ca3af;
+}
