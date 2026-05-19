@@ -33,7 +33,7 @@
                         <Region HBox.hgrow="ALWAYS" />
                         <Button text="View Pending ➔" styleClass="btn-link" style="-fx-text-fill: #10b981;" />
                     </HBox>
-                    <Label text="\$81,032" styleClass="bento-stat-value, mono" />
+                    <Label fx:id="availableCashLabel" text="\$0.00" styleClass="bento-stat-value, mono" />
                     <Label text="Ready for budgeting &amp; immediate withdrawal" styleClass="card-subtitle" />
                 </VBox>
 
@@ -49,14 +49,14 @@
                             <Label text="TOTAL INCOMING" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
                             <HBox alignment="CENTER_LEFT" spacing="6">
                                 <SVGPath content="M20 12L12 20L4 12M12 4V20" style="-fx-stroke: #10b981; -fx-stroke-width: 2;" />
-                                <Label text="\$809.05" styleClass="bento-stat-sub, mono" style="-fx-text-fill: #10b981;" />
+                                <Label fx:id="totalIncomingLabel" text="\$0.00" styleClass="bento-stat-sub, mono" style="-fx-text-fill: #10b981;" />
                             </HBox>
                         </VBox>
                         <VBox styleClass="sub-card" HBox.hgrow="ALWAYS" spacing="6">
                             <Label text="TOTAL OUTGOING" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
                             <HBox alignment="CENTER_LEFT" spacing="6">
                                 <SVGPath content="M4 12L12 4L20 12M12 20V4" style="-fx-stroke: #ef4444; -fx-stroke-width: 2;" />
-                                <Label text="\$2,230.23" styleClass="bento-stat-sub, mono" style="-fx-text-fill: #ef4444;" />
+                                <Label fx:id="totalOutgoingLabel" text="\$0.00" styleClass="bento-stat-sub, mono" style="-fx-text-fill: #ef4444;" />
                             </HBox>
                         </VBox>
                     </HBox>
@@ -71,30 +71,30 @@
                             <SVGPath content="M5 15L10 10L15 15L20 5" styleClass="sparkline-green" />
                             <VBox spacing="2">
                                 <Label text="INCOMING" styleClass="card-title" style="-fx-font-size: 11px;" />
-                                <Label text="140.59 TX" styleClass="card-subtitle" style="-fx-font-size: 10px;" />
+                                <Label fx:id="activityIncomingTxLabel" text="0 TX" styleClass="card-subtitle" style="-fx-font-size: 10px;" />
                             </VBox>
                             <Region HBox.hgrow="ALWAYS" />
-                            <Label text="\$8,434.59" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                            <Label fx:id="activityIncomingAmountLabel" text="\$0.00" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
                         </HBox>
                         <!-- OUTGOING -->
                         <HBox alignment="CENTER_LEFT" spacing="12">
                             <SVGPath content="M5 5L10 12L15 8L20 16" styleClass="sparkline-red" />
                             <VBox spacing="2">
                                 <Label text="OUTGOING" styleClass="card-title" style="-fx-font-size: 11px;" />
-                                <Label text="10.75 TX" styleClass="card-subtitle" style="-fx-font-size: 10px;" />
+                                <Label fx:id="activityOutgoingTxLabel" text="0 TX" styleClass="card-subtitle" style="-fx-font-size: 10px;" />
                             </VBox>
                             <Region HBox.hgrow="ALWAYS" />
-                            <Label text="\$1,232.02" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                            <Label fx:id="activityOutgoingAmountLabel" text="\$0.00" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
                         </HBox>
                         <!-- WITHDRAWN -->
                         <HBox alignment="CENTER_LEFT" spacing="12">
                             <SVGPath content="M5 12L10 12L15 8L20 14" styleClass="sparkline-white" style="-fx-stroke: #64748b;" />
                             <VBox spacing="2">
                                 <Label text="WITHDRAWN" styleClass="card-title" style="-fx-font-size: 11px;" />
-                                <Label text="5.02 TX" styleClass="card-subtitle" style="-fx-font-size: 10px;" />
+                                <Label fx:id="activityWithdrawnTxLabel" text="0 TX" styleClass="card-subtitle" style="-fx-font-size: 10px;" />
                             </VBox>
                             <Region HBox.hgrow="ALWAYS" />
-                            <Label text="\$504.00" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                            <Label fx:id="activityWithdrawnAmountLabel" text="\$0.00" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
                         </HBox>
                     </VBox>
                 </VBox>
@@ -125,11 +125,11 @@
                                 <Label text="Active • Primary" styleClass="card-subtitle" />
                             </VBox>
                             <VBox spacing="2" prefWidth="140">
-                                <Label text="\$85,434.59" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
-                                <Label text="24,320.02 TX" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
+                                <Label fx:id="checkingBalanceLabel" text="\$0.00" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                                <Label fx:id="checkingTxLabel" text="0 TX" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
                             </VBox>
                             <VBox spacing="2" HBox.hgrow="ALWAYS">
-                                <Label text="\$5,434.59" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                                <Label fx:id="checkingAvgLabel" text="\$0.00" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
                                 <Label text="Stable flow" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
                             </VBox>
                         </HBox>
@@ -142,11 +142,11 @@
                                 <Label text="High Yield • 4.5%" styleClass="card-subtitle" />
                             </VBox>
                             <VBox spacing="2" prefWidth="140">
-                                <Label text="\$10,320.72" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #10b981;" />
-                                <Label text="10,320.72 TX" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
+                                <Label fx:id="savingsBalanceLabel" text="\$0.00" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #10b981;" />
+                                <Label fx:id="savingsTxLabel" text="0 TX" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
                             </VBox>
                             <VBox spacing="2" HBox.hgrow="ALWAYS">
-                                <Label text="\$2,013.20" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                                <Label fx:id="savingsAvgLabel" text="\$0.00" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
                                 <Label text="Interest earning" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
                             </VBox>
                         </HBox>
@@ -159,11 +159,11 @@
                                 <Label text="Brokerage • Liquid" styleClass="card-subtitle" />
                             </VBox>
                             <VBox spacing="2" prefWidth="140">
-                                <Label text="\$10,433.20" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
-                                <Label text="2,013.20 TX" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
+                                <Label fx:id="investmentBalanceLabel" text="\$0.00" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                                <Label fx:id="investmentTxLabel" text="0 TX" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
                             </VBox>
                             <VBox spacing="2" HBox.hgrow="ALWAYS">
-                                <Label text="\$1,013.20" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
+                                <Label fx:id="investmentAvgLabel" text="\$0.00" styleClass="bento-stat-sub, mono" style="-fx-font-size: 14px; -fx-text-fill: #0f172a;" />
                                 <Label text="Ready to invest" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
                             </VBox>
                         </HBox>
@@ -178,55 +178,7 @@
                         <Button text="View All ➔" styleClass="btn-outline" style="-fx-padding: 4 12;" />
                     </HBox>
 
-                    <VBox spacing="12">
-                        <!-- Transaction 1 -->
-                        <HBox styleClass="sub-card" alignment="CENTER_LEFT" spacing="16">
-                            <StackPane styleClass="circle-badge-box">
-                                <Circle radius="16" fill="#e2e8f0" stroke="#10b981" strokeWidth="2.5" />
-                                <Label text="66%" styleClass="circle-badge-text" style="-fx-text-fill: #10b981;" />
-                            </StackPane>
-                            <VBox spacing="2" HBox.hgrow="ALWAYS">
-                                <Label text="Jane's Salary" styleClass="card-title" />
-                                <Label text="will deposit 50% next week" styleClass="card-subtitle" />
-                            </VBox>
-                            <VBox alignment="CENTER_RIGHT" spacing="2">
-                                <Label text="+ \$48,556.98" styleClass="bento-stat-sub, mono" style="-fx-font-size: 15px; -fx-text-fill: #10b981;" />
-                                <Label text="Verified Payroll" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
-                            </VBox>
-                        </HBox>
-
-                        <!-- Transaction 2 -->
-                        <HBox styleClass="sub-card" alignment="CENTER_LEFT" spacing="16">
-                            <StackPane styleClass="circle-badge-box">
-                                <Circle radius="16" fill="#e2e8f0" stroke="#3b82f6" strokeWidth="2.5" />
-                                <Label text="✔" styleClass="circle-badge-text" style="-fx-text-fill: #3b82f6; -fx-font-size: 14px;" />
-                            </StackPane>
-                            <VBox spacing="2" HBox.hgrow="ALWAYS">
-                                <Label text="DAO Work / Client Payment" styleClass="card-title" />
-                                <Label text="Awesome Work, WAGMI." styleClass="card-subtitle" />
-                            </VBox>
-                            <VBox alignment="CENTER_RIGHT" spacing="2">
-                                <Label text="+ \$10,000.00" styleClass="bento-stat-sub, mono" style="-fx-font-size: 15px; -fx-text-fill: #0f172a;" />
-                                <Label text="Direct Settlement" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
-                            </VBox>
-                        </HBox>
-
-                        <!-- Transaction 3 -->
-                        <HBox styleClass="sub-card" alignment="CENTER_LEFT" spacing="16">
-                            <StackPane styleClass="circle-badge-box">
-                                <Circle radius="16" fill="#e2e8f0" stroke="#ef4444" strokeWidth="2.5" />
-                                <Label text="48%" styleClass="circle-badge-text" style="-fx-text-fill: #ef4444;" />
-                            </StackPane>
-                            <VBox spacing="2" HBox.hgrow="ALWAYS">
-                                <Label text="Jane's Deposit" styleClass="card-title" />
-                                <Label text="will deposit 50% next week" styleClass="card-subtitle" />
-                            </VBox>
-                            <VBox alignment="CENTER_RIGHT" spacing="2">
-                                <Label text="- \$49,804.55" styleClass="bento-stat-sub, mono" style="-fx-font-size: 15px; -fx-text-fill: #ef4444;" />
-                                <Label text="External Transfer" styleClass="card-subtitle" style="-fx-font-size: 11px;" />
-                            </VBox>
-                        </HBox>
-                    </VBox>
+                    <VBox fx:id="recentTransactionsContainer" spacing="12" />
                 </VBox>
             </VBox>
 
@@ -277,24 +229,24 @@
                 </VBox>
 
                 <!-- 3. P2P TRANSFER CARD -->
-                <VBox styleClass="card, card-padded" spacing="16" style="-fx-border-color: #3b82f6;">
+                <VBox styleClass="card, card-padded" spacing="16" style="-fx-border-color: #3b82f6; -fx-opacity: 0.7;">
                     <HBox alignment="CENTER_LEFT">
                         <Label text="⇄ P2P TRANSFER" styleClass="card-title" style="-fx-text-fill: #3b82f6; -fx-font-size: 14px;" />
                         <Region HBox.hgrow="ALWAYS" />
-                        <Label text="Zero Fees" styleClass="card-subtitle" style="-fx-text-fill: #3b82f6;" />
+                        <Label text="Coming Soon" styleClass="card-subtitle" style="-fx-text-fill: #3b82f6; -fx-font-weight: bold;" />
                     </HBox>
-                    <Label text="Send funds instantly to any BudgetFit user." styleClass="card-subtitle" />
+                    <Label text="Send funds instantly to any BudgetFit user (Coming Soon)." styleClass="card-subtitle" />
                     
                     <VBox spacing="12">
                         <VBox spacing="4">
                             <Label text="Recipient Username" styleClass="card-title" style="-fx-font-size: 11px;" />
-                            <TextField fx:id="transRecipientField" promptText="e.g. sarah" styleClass="search-field-white" />
+                            <TextField fx:id="transRecipientField" promptText="Locked" disable="true" styleClass="search-field-white" />
                         </VBox>
                         <VBox spacing="4">
                             <Label text="Transfer Amount (\$)" styleClass="card-title" style="-fx-font-size: 11px;" />
-                            <TextField fx:id="transAmountField" promptText="e.g. 250.00" styleClass="search-field-white" />
+                            <TextField fx:id="transAmountField" promptText="Locked" disable="true" styleClass="search-field-white" />
                         </VBox>
-                        <Button text="AUTHORIZE P2P TRANSFER" onAction="#handleTransfer" styleClass="btn-info" maxWidth="Infinity" />
+                        <Button text="COMING SOON" onAction="#handleTransfer" disable="true" styleClass="btn-info" maxWidth="Infinity" />
                     </VBox>
                 </VBox>
             </VBox>

@@ -263,17 +263,135 @@
 
 .controls-bar {
     -fx-background-color: -bf-bg-card;
-    -fx-padding: 16 32;
+    -fx-padding: 12 32;
     -fx-border-color: -bf-border;
     -fx-border-width: 0 0 1 0;
-    -fx-effect: dropshadow(gaussian, rgba(90,70,50,0.04), 8, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(90,70,50,0.03), 8, 0, 0, 1);
 }
 
 .view-title {
     -fx-font-family: "DM Sans";
-    -fx-font-size: 22px;
+    -fx-font-size: 20px;
     -fx-font-weight: 700;
     -fx-text-fill: -bf-text-primary;
+}
+
+.header-date {
+    -fx-font-family: "DM Sans";
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -bf-text-tertiary;
+}
+
+/* Premium Search Box Container */
+.search-box-container {
+    -fx-background-color: -bf-bg-page;
+    -fx-border-color: -bf-border;
+    -fx-border-width: 1px;
+    -fx-border-radius: 99px;
+    -fx-background-radius: 99px;
+    -fx-padding: 4 12;
+    -fx-alignment: center-left;
+}
+
+.search-icon-svg {
+    -fx-fill: -bf-text-tertiary;
+}
+
+.search-field-premium {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0 0 0 8;
+    -fx-text-fill: -bf-text-primary;
+    -fx-font-family: "DM Sans";
+    -fx-font-size: 13px;
+    -fx-prompt-text-fill: -bf-text-tertiary;
+    -fx-pref-width: 160px;
+}
+
+.search-field-premium:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Pill ComboBoxes */
+.combo-box-pill {
+    -fx-background-color: -bf-bg-card;
+    -fx-border-color: -bf-border;
+    -fx-border-radius: 99px;
+    -fx-background-radius: 99px;
+    -fx-padding: 3 8;
+    -fx-font-family: "DM Sans";
+    -fx-font-size: 13px;
+    -fx-text-fill: -bf-text-secondary;
+}
+
+.combo-box-pill:hover {
+    -fx-background-color: -bf-bg-page;
+}
+
+/* Action Icon Buttons */
+.btn-icon-header {
+    -fx-background-color: transparent;
+    -fx-border-color: -bf-border;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 6;
+}
+
+.btn-icon-header:hover {
+    -fx-background-color: -bf-bg-page;
+}
+
+.header-action-svg {
+    -fx-fill: -bf-text-secondary;
+}
+
+/* Notification Bell & Badge */
+.btn-icon-notification {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 6;
+}
+
+.btn-icon-notification:hover {
+    -fx-background-color: -bf-bg-page;
+    -fx-background-radius: 99px;
+}
+
+.notification-bell-svg {
+    -fx-fill: -bf-text-secondary;
+}
+
+.notification-container {
+    -fx-alignment: top-right;
+}
+
+.notification-badge {
+    -fx-fill: #10b981;
+    -fx-effect: dropshadow(gaussian, rgba(16,185,129,0.3), 3, 0, 0, 0);
+}
+
+/* User Profile Badge */
+.profile-badge-container {
+    -fx-alignment: center;
+}
+
+.avatar-circle {
+    -fx-background-color: #fef3c7;
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-max-width: 30px;
+    -fx-max-height: 30px;
+    -fx-background-radius: 99px;
+    -fx-alignment: center;
+}
+
+.avatar-text {
+    -fx-text-fill: #d97706;
+    -fx-font-family: "DM Sans";
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
 }
 
 /* ==========================================================================

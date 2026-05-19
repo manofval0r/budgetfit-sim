@@ -49,6 +49,8 @@ public class DashboardController {
     @FXML private BorderPane mainPane;
     @FXML private Label welcomeLabel;
     @FXML private Label viewTitleLabel;
+    @FXML private Label headerDateLabel;
+    @FXML private Label avatarLabel;
     @FXML private Label amountLeftLabel;
     @FXML private TextField monthlyIncomeField;
     @FXML private VBox goalsContainer;
@@ -196,6 +198,13 @@ public class DashboardController {
     public void initialize() {
         instance = this;
         welcomeLabel.setText("Welcome, " + UserSession.getUsername() + "!");
+
+        if (headerDateLabel != null) {
+            headerDateLabel.setText("» " + java.time.LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.ENGLISH)));
+        }
+        if (avatarLabel != null && UserSession.getUsername() != null && !UserSession.getUsername().isEmpty()) {
+            avatarLabel.setText(UserSession.getUsername().substring(0, 1).toUpperCase());
+        }
 
         setupCurrencySelector();
         setupMonthSelector();

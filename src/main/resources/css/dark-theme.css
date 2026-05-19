@@ -121,3 +121,60 @@
 .chart-pie-label {
     -fx-fill: #9ca3af;
 }
+
+/* Redesigned Premium Header overrides for Dark Mode */
+.header-date {
+    -fx-text-fill: #6b7280;
+}
+
+.search-box-container {
+    -fx-background-color: #0b0f19;
+    -fx-border-color: #1f2937;
+}
+
+.search-icon-svg {
+    -fx-fill: #9ca3af;
+}
+
+.search-field-premium {
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #6b7280;
+}
+
+.combo-box-pill {
+    -fx-background-color: #1f2937;
+    -fx-border-color: #374151;
+    -fx-text-fill: white;
+}
+
+.combo-box-pill:hover {
+    -fx-background-color: #374151;
+}
+
+.btn-icon-header {
+    -fx-border-color: #1f2937;
+}
+
+.btn-icon-header:hover {
+    -fx-background-color: #1f2937;
+}
+
+.header-action-svg {
+    -fx-fill: #9ca3af;
+}
+
+.btn-icon-notification:hover {
+    -fx-background-color: #1f2937;
+}
+
+.notification-bell-svg {
+    -fx-fill: #9ca3af;
+}
+
+.avatar-circle {
+    -fx-background-color: #064e3b;
+}
+
+.avatar-text {
+    -fx-text-fill: #34d399;
+}
